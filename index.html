@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>João de Souza Construções</title>
     
-    <!-- Google Fonts: Montserrat -->
+    <!-- Google Fonts: Montserrat & Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet">
     
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -22,16 +22,19 @@
             theme: {
                 extend: {
                     colors: {
-                        'brand-blue': '#0B2B47',
-                        'brand-blue-light': '#1A4A7A',
-                        'brand-brown': '#A97C50',
-                        'brand-brown-dark': '#8A633E',
-                        'brand-gray-bg': '#F4F5F7',
-                        'brand-beige': '#F9F6F0',
+                        brand: {
+                            navy: '#0f172a',       /* Substituindo brand-blue */
+                            navyLight: '#1e293b',  /* Substituindo brand-blue-light */
+                            gold: '#c5a059',       /* Substituindo brand-brown */
+                            goldHover: '#b38d45',  /* Substituindo brand-brown-dark */
+                            light: '#f8fafc',      /* Substituindo brand-gray-bg / brand-beige */
+                            gray: '#64748b'
+                        },
                         'whatsapp': '#25D366'
                     },
                     fontFamily: {
-                        'sans': ['Montserrat', 'sans-serif'],
+                        'sans': ['Inter', 'sans-serif'],
+                        'heading': ['Montserrat', 'sans-serif'],
                     },
                     boxShadow: {
                         'card': '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
@@ -41,9 +44,8 @@
         }
     </script>
     <style>
-        /* Custom styles for elements that are tricky with pure utility classes */
         .hero-overlay {
-            background: linear-gradient(to right, rgba(11, 43, 71, 0.9) 0%, rgba(11, 43, 71, 0.7) 40%, rgba(0,0,0,0) 100%);
+            background: linear-gradient(to right, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0.7) 40%, rgba(0,0,0,0) 100%);
         }
         
         .construction-bg-blend {
@@ -61,9 +63,8 @@
             z-index: 0;
         }
 
-        /* Mock CAIXA logo style */
         .caixa-logo {
-            font-family: 'Arial', sans-serif; /* Standard tight font */
+            font-family: 'Arial', sans-serif;
             font-weight: 900;
             color: #005CA9;
             letter-spacing: -1px;
@@ -77,7 +78,6 @@
             font-size: 1.2rem;
         }
         
-        /* QR Code placeholder pattern */
         .qr-placeholder {
             background-image: 
                 linear-gradient(45deg, #fff 25%, transparent 25%), 
@@ -89,139 +89,112 @@
             background-color: #000;
             border: 4px solid #fff;
         }
+
+        @keyframes pulse-whatsapp {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
+            70% { box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+        .btn-whatsapp {
+            animation: pulse-whatsapp 2s infinite;
+        }
     </style>
 </head>
-<body class="font-sans text-gray-800 antialiased overflow-x-hidden">
+<body class="font-sans text-gray-800 antialiased overflow-x-hidden selection:bg-brand-gold selection:text-white">
 
-    <div class="bg-white border-b border-gray-100 hidden md:block">
-        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-            
-            <!-- Logo Section -->
-            <div class="flex items-center gap-3">
-                <!-- Mock Logo Icon -->
-                <div class="relative w-12 h-12 flex items-end">
-                    <div class="absolute bottom-0 left-0 text-brand-brown text-3xl leading-none"><i class="fa-solid fa-building"></i></div>
-                    <div class="absolute bottom-0 left-4 text-brand-blue text-4xl leading-none"><i class="fa-solid fa-home"></i></div>
-                </div>
-                <div class="flex flex-col">
-                    <h1 class="text-xl font-bold leading-tight">
-                        <span class="text-brand-blue">JOÃO DE SOUZA</span><br>
-                        <span class="text-brand-brown">CONSTRUÇÕES</span>
-                    </h1>
-                    <span class="text-[10px] text-gray-500 uppercase tracking-wider">Construindo com você o seu futuro</span>
-                </div>
-            </div>
-
-            <!-- Middle Info -->
-            <div class="flex gap-8 text-sm">
-                <div class="flex items-start gap-2">
-                    <i class="fa-solid fa-location-dot text-brand-blue mt-1"></i>
-                    <div>
-                        <p class="font-bold text-gray-800">São Pedro da Aldeia - RJ</p>
-                        <p class="text-xs text-gray-500">Atendemos toda a região</p>
+    <header class="fixed w-full z-50 bg-white/90 backdrop-blur-md shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <img src="logo_3_sem_fundo.png" alt="Logo" class="h-10 md:h-12 w-auto object-contain mr-3" onerror="this.src='https://placehold.co/150x50/0f172a/fff?text=Logo'">
+                    <div class="flex flex-col">
+                        <span class="font-heading font-bold text-xl md:text-2xl text-brand-navy leading-none">
+                            João de Souza <span class="text-brand-gold">Construções</span>
+                        </span>
+                        <span class="text-[10px] md:text-xs text-gray-500 tracking-wider mt-1 uppercase font-semibold">
+                            Construindo com você o seu futuro
+                        </span>
                     </div>
                 </div>
-                <div class="flex items-start gap-2">
-                    <i class="fa-regular fa-clock text-brand-blue mt-1"></i>
-                    <div>
-                        <p class="font-bold text-gray-800">Segunda a Sábado</p>
-                        <p class="text-xs text-gray-500">8h às 18h</p>
-                    </div>
-                </div>
-            </div>
+                
+                <!-- Desktop Nav -->
+                <nav class="hidden md:flex space-x-8 items-center">
+                    <a href="#" class="text-sm font-semibold text-gray-600 hover:text-brand-gold transition-colors">Home</a>
+                    <a href="#" class="text-sm font-semibold text-gray-600 hover:text-brand-gold transition-colors">A Empresa</a>
+                    <a href="#empreendimentos-section" class="text-sm font-semibold text-gray-600 hover:text-brand-gold transition-colors">Empreendimentos</a>
+                    <a href="#" class="text-sm font-semibold text-gray-600 hover:text-brand-gold transition-colors">Vídeos</a>
+                    <a href="https://wa.me/5522997662533?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20visita!" target="_blank" class="bg-brand-navy text-white px-5 py-2.5 rounded-md font-semibold hover:bg-brand-gold transition-colors shadow-lg">Fale Conosco</a>
+                </nav>
 
-            <!-- Contact Info -->
-            <div class="flex items-center gap-3">
-                <i class="fa-brands fa-whatsapp text-whatsapp text-4xl"></i>
-                <div class="flex flex-col text-sm font-bold text-gray-800">
-                    <span>(22) 99766-2533</span>
-                    <span>(22) 99974-1208</span>
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-brand-navy hover:text-brand-gold focus:outline-none text-2xl">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
                 </div>
             </div>
         </div>
-    </div>
 
-    <nav class="bg-white sticky top-0 z-50 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 h-16 flex justify-between items-center">
-            
-            <!-- Mobile Logo (Visible only on small screens) -->
-            <div class="md:hidden font-bold text-brand-blue text-lg">
-                JOÃO DE SOUZA
-            </div>
-
-            <!-- Links -->
-            <div class="hidden md:flex space-x-8 text-sm font-semibold text-gray-600">
-                <a href="#" class="text-brand-blue border-b-2 border-brand-blue pb-1">Home</a>
-                <a href="#" class="hover:text-brand-blue transition-colors pb-1 border-b-2 border-transparent hover:border-brand-blue">A Empresa</a>
-                <a href="#" class="hover:text-brand-blue transition-colors pb-1 border-b-2 border-transparent hover:border-brand-blue">Empreendimentos</a>
-                <a href="#" class="hover:text-brand-blue transition-colors pb-1 border-b-2 border-transparent hover:border-brand-blue">Vídeos</a>
-                <a href="#" class="hover:text-brand-blue transition-colors pb-1 border-b-2 border-transparent hover:border-brand-blue">Fale Conosco</a>
-            </div>
-
-            <!-- CTA Button -->
-            <a href="#" class="bg-brand-blue hover:bg-brand-blue-light transition-colors text-white text-xs md:text-sm font-bold py-2 px-4 md:px-6 rounded flex items-center gap-2">
-                <i class="fa-solid fa-house-user text-lg"></i>
-                <span class="text-left leading-tight">NEGOCIE DIRETO<br><span class="font-normal text-[10px] md:text-xs">COM A CONSTRUTORA</span></span>
-            </a>
-            
-            <!-- Mobile Menu Toggle -->
-            <button class="md:hidden text-brand-blue text-2xl">
-                <i class="fa-solid fa-bars"></i>
-            </button>
+        <!-- Mobile Nav Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 shadow-lg px-4 pt-4 pb-6 space-y-3">
+            <a href="#" class="block text-base font-semibold text-gray-600 hover:text-brand-gold transition-colors">Home</a>
+            <a href="#" class="block text-base font-semibold text-gray-600 hover:text-brand-gold transition-colors">A Empresa</a>
+            <a href="#empreendimentos-section" class="block text-base font-semibold text-gray-600 hover:text-brand-gold transition-colors">Empreendimentos</a>
+            <a href="#" class="block text-base font-semibold text-gray-600 hover:text-brand-gold transition-colors">Vídeos</a>
+            <a href="https://wa.me/5522997662533?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20visita!" target="_blank" class="block bg-brand-navy text-white text-center px-5 py-3 mt-4 rounded-md font-semibold hover:bg-brand-gold transition-colors">Fale Conosco</a>
         </div>
-    </nav>
+    </header>
 
-    <header class="relative w-full h-[500px] md:h-[600px] bg-gray-900 overflow-hidden">
-        <!-- Background Image -->
-        <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" alt="Casa de alto padrão" class="absolute inset-0 w-full h-full object-cover object-center">
+    <section class="relative w-full h-[500px] md:h-[600px] bg-brand-navy overflow-hidden pt-20">
+        
+        <!-- Background Slider -->
+        <div id="hero-slider" class="absolute inset-0 z-0">
+            <img src="slide1.jpeg" alt="Slide 1" class="hero-slide absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-1000 opacity-100" onerror="this.src='https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80'">
+            <img src="slide2.jpeg" alt="Slide 2" class="hero-slide absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-1000 opacity-0" onerror="this.src='https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80'">
+            <img src="slide3.jpeg" alt="Slide 3" class="hero-slide absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-1000 opacity-0" onerror="this.src='https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80'">
+        </div>
         
         <!-- Gradient Overlay -->
-        <div class="absolute inset-0 hero-overlay"></div>
+        <div class="absolute inset-0 hero-overlay z-10"></div>
 
         <!-- Content -->
-        <div class="relative z-10 max-w-7xl mx-auto px-4 h-full flex items-center">
+        <div class="relative z-20 max-w-7xl mx-auto px-4 h-full flex items-center">
             <div class="w-full md:w-3/5 lg:w-1/2 text-white">
-                <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-2">
+                <h2 class="font-heading text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-2">
                     JOÃO DE SOUZA<br>CONSTRUÇÕES
                 </h2>
                 <h3 class="text-xl md:text-2xl font-semibold mb-6">QUALIDADE QUE VOCÊ PODE CONFIAR</h3>
                 
-                <p class="text-sm md:text-base text-gray-200 mb-8 max-w-md leading-relaxed">
+                <p class="font-sans text-sm md:text-base text-gray-200 mb-8 max-w-md leading-relaxed">
                     Há mais de 20 anos construindo com qualidade, segurança e compromisso. Imóveis próprios, com toda a documentação regularizada e direitos garantidos por lei.
                 </p>
 
                 <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="#" class="bg-brand-brown hover:bg-brand-brown-dark transition-colors text-white font-bold py-3 px-6 rounded text-sm text-center flex items-center justify-center gap-2">
+                    <a href="#empreendimentos-section" class="bg-brand-gold hover:bg-brand-goldHover transition-colors text-white font-bold py-3 px-6 rounded text-sm text-center flex items-center justify-center gap-2 shadow-lg">
                         CONHEÇA NOSSOS EMPREENDIMENTOS <i class="fa-solid fa-chevron-right text-xs"></i>
                     </a>
-                    <a href="#" class="bg-transparent border border-white hover:bg-white/10 transition-colors text-white font-bold py-3 px-6 rounded text-sm text-center flex items-center justify-center gap-2">
+                    <a href="https://wa.me/5522997662533?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20visita!" target="_blank" class="bg-transparent border border-white hover:bg-white/10 transition-colors text-white font-bold py-3 px-6 rounded text-sm text-center flex items-center justify-center gap-2">
                         FALE CONOSCO <i class="fa-brands fa-whatsapp text-lg"></i>
                     </a>
                 </div>
             </div>
         </div>
-
-        <!-- Carousel Controls -->
-        <button class="absolute left-4 top-1/2 transform -translate-y-1/2 text-white/50 hover:text-white text-3xl z-20 transition-colors">
-            <i class="fa-solid fa-angle-left"></i>
-        </button>
-        <button class="absolute right-4 top-1/2 transform -translate-y-1/2 text-white/50 hover:text-white text-3xl z-20 transition-colors">
-            <i class="fa-solid fa-angle-right"></i>
-        </button>
         
-        <!-- Indicators -->
+        <!-- Indicators (Static visual) -->
         <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex gap-2 z-20">
-            <div class="w-2.5 h-2.5 rounded-full bg-white"></div>
+            <div class="w-2.5 h-2.5 rounded-full bg-brand-gold"></div>
+            <div class="w-2.5 h-2.5 rounded-full bg-white/50"></div>
             <div class="w-2.5 h-2.5 rounded-full bg-white/50"></div>
         </div>
-    </header>
+    </section>
 
-    <section class="py-16 bg-brand-gray-bg">
+    <section id="empreendimentos-section" class="py-16 bg-brand-light">
         <div class="max-w-7xl mx-auto px-4">
             
             <!-- Section Header -->
             <div class="mb-10">
-                <h2 class="text-3xl md:text-4xl font-bold text-brand-blue mb-2">NOSSOS EMPREENDIMENTOS</h2>
+                <h2 class="font-heading text-3xl md:text-4xl font-bold text-brand-navy mb-2">NOSSOS EMPREENDIMENTOS</h2>
                 <div class="text-gray-600 font-medium flex gap-2 text-sm md:text-base">
                     <span>Casas</span>
                     <span>&bull;</span>
@@ -234,85 +207,85 @@
             <!-- Cards Grid -->
             <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
                 
-                <!-- Card 1: Casas -->
-                <div class="bg-white rounded border border-brand-blue overflow-hidden shadow-card flex flex-col">
+                <!-- Card 1: Casas (Updated image to slide1.jpeg) -->
+                <div class="bg-white rounded border border-brand-navy overflow-hidden shadow-card flex flex-col group hover:shadow-xl transition-shadow">
                     <div class="h-48 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Casas" class="w-full h-full object-cover">
+                        <img src="slide1.jpeg" alt="Casas" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'">
                     </div>
                     <div class="p-5 flex-grow flex flex-col">
-                        <h4 class="text-brand-blue font-bold text-lg mb-4 uppercase">CASAS</h4>
-                        <ul class="space-y-3 text-sm text-gray-700 flex-grow">
-                            <li class="flex items-center gap-3"><i class="fa-solid fa-bed w-4 text-brand-blue text-center"></i> 3 quartos (1 suíte)</li>
-                            <li class="flex items-center gap-3"><i class="fa-solid fa-ruler-combined w-4 text-brand-blue text-center"></i> 126 m² de área construída</li>
-                            <li class="flex items-center gap-3"><i class="fa-solid fa-vector-square w-4 text-brand-blue text-center"></i> 252 m² de terreno</li>
-                            <li class="flex items-center gap-3"><i class="fa-solid fa-car w-4 text-brand-blue text-center"></i> 2 vagas</li>
+                        <h4 class="font-heading text-brand-navy font-bold text-lg mb-4 uppercase">CASAS</h4>
+                        <ul class="space-y-3 text-sm text-gray-700 flex-grow font-sans">
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-bed w-4 text-brand-gold text-center"></i> 3 quartos (1 suíte)</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-ruler-combined w-4 text-brand-gold text-center"></i> 126 m² de área construída</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-vector-square w-4 text-brand-gold text-center"></i> 252 m² de terreno</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-car w-4 text-brand-gold text-center"></i> 2 vagas</li>
                         </ul>
                     </div>
                     <div class="p-4 pt-0">
-                        <button class="w-full bg-brand-blue hover:bg-brand-blue-light transition-colors text-white font-bold py-2 rounded text-sm uppercase flex items-center justify-center gap-2">
+                        <button class="w-full bg-brand-navy hover:bg-brand-navyLight transition-colors text-white font-bold py-2 rounded text-sm uppercase flex items-center justify-center gap-2">
                             SAIBA MAIS <i class="fa-solid fa-arrow-right"></i>
                         </button>
                     </div>
                 </div>
 
                 <!-- Card 2: Apartamentos -->
-                <div class="bg-white rounded border border-brand-blue overflow-hidden shadow-card flex flex-col">
+                <div class="bg-white rounded border border-brand-navy overflow-hidden shadow-card flex flex-col group hover:shadow-xl transition-shadow">
                     <div class="h-48 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Apartamentos" class="w-full h-full object-cover object-bottom">
+                        <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Apartamentos" class="w-full h-full object-cover object-bottom transform group-hover:scale-105 transition-transform duration-500">
                     </div>
                     <div class="p-5 flex-grow flex flex-col">
-                        <h4 class="text-brand-blue font-bold text-lg mb-4 uppercase">APARTAMENTOS</h4>
-                        <ul class="space-y-3 text-sm text-gray-700 flex-grow">
-                            <li class="flex items-center gap-3"><i class="fa-solid fa-bed w-4 text-brand-blue text-center"></i> 2 quartos (1 suíte)</li>
-                            <li class="flex items-center gap-3"><i class="fa-solid fa-ruler-combined w-4 text-brand-blue text-center"></i> 78 m² de área privativa</li>
-                            <li class="flex items-center gap-3"><i class="fa-solid fa-utensils w-4 text-brand-blue text-center"></i> Varanda gourmet</li>
-                            <li class="flex items-center gap-3"><i class="fa-solid fa-car w-4 text-brand-blue text-center"></i> Vaga de garagem</li>
+                        <h4 class="font-heading text-brand-navy font-bold text-lg mb-4 uppercase">APARTAMENTOS</h4>
+                        <ul class="space-y-3 text-sm text-gray-700 flex-grow font-sans">
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-bed w-4 text-brand-gold text-center"></i> 2 quartos (1 suíte)</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-ruler-combined w-4 text-brand-gold text-center"></i> 78 m² de área privativa</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-utensils w-4 text-brand-gold text-center"></i> Varanda gourmet</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-car w-4 text-brand-gold text-center"></i> Vaga de garagem</li>
                         </ul>
                     </div>
                     <div class="p-4 pt-0">
-                        <button class="w-full bg-brand-blue hover:bg-brand-blue-light transition-colors text-white font-bold py-2 rounded text-sm uppercase flex items-center justify-center gap-2">
+                        <button class="w-full bg-brand-navy hover:bg-brand-navyLight transition-colors text-white font-bold py-2 rounded text-sm uppercase flex items-center justify-center gap-2">
                             SAIBA MAIS <i class="fa-solid fa-arrow-right"></i>
                         </button>
                     </div>
                 </div>
 
                 <!-- Card 3: Salas Comerciais -->
-                <div class="bg-white rounded border border-brand-blue overflow-hidden shadow-card flex flex-col">
+                <div class="bg-white rounded border border-brand-navy overflow-hidden shadow-card flex flex-col group hover:shadow-xl transition-shadow">
                     <div class="h-48 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Salas Comerciais" class="w-full h-full object-cover">
+                        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Salas Comerciais" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
                     </div>
                     <div class="p-5 flex-grow flex flex-col">
-                        <h4 class="text-brand-blue font-bold text-lg mb-4 uppercase">SALAS COMERCIAIS</h4>
-                        <ul class="space-y-3 text-sm text-gray-700 flex-grow">
-                            <li class="flex items-center gap-3"><i class="fa-solid fa-ruler-combined w-4 text-brand-blue text-center"></i> 28 m²</li>
-                            <li class="flex items-center gap-3"><i class="fa-solid fa-location-dot w-4 text-brand-blue text-center"></i> Centro de Cabo Frio</li>
-                            <li class="flex items-center gap-3"><i class="fa-solid fa-store w-4 text-brand-blue text-center"></i> Lagoa Shopping</li>
-                            <li class="flex items-center gap-3"><i class="fa-solid fa-car w-4 text-brand-blue text-center"></i> Garagem privativa</li>
+                        <h4 class="font-heading text-brand-navy font-bold text-lg mb-4 uppercase">SALAS COMERCIAIS</h4>
+                        <ul class="space-y-3 text-sm text-gray-700 flex-grow font-sans">
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-ruler-combined w-4 text-brand-gold text-center"></i> 28 m²</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-location-dot w-4 text-brand-gold text-center"></i> Centro de Cabo Frio</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-store w-4 text-brand-gold text-center"></i> Lagoa Shopping</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-car w-4 text-brand-gold text-center"></i> Garagem privativa</li>
                         </ul>
                     </div>
                     <div class="p-4 pt-0">
-                        <button class="w-full bg-brand-blue hover:bg-brand-blue-light transition-colors text-white font-bold py-2 rounded text-sm uppercase flex items-center justify-center gap-2">
+                        <button class="w-full bg-brand-navy hover:bg-brand-navyLight transition-colors text-white font-bold py-2 rounded text-sm uppercase flex items-center justify-center gap-2">
                             SAIBA MAIS <i class="fa-solid fa-arrow-right"></i>
                         </button>
                     </div>
                 </div>
 
                 <!-- Card 4: Casas em Condomínio -->
-                <div class="bg-white rounded border border-brand-blue overflow-hidden shadow-card flex flex-col">
+                <div class="bg-white rounded border border-brand-navy overflow-hidden shadow-card flex flex-col group hover:shadow-xl transition-shadow">
                     <div class="h-48 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Casas em Condomínio" class="w-full h-full object-cover">
+                        <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Casas em Condomínio" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
                     </div>
                     <div class="p-5 flex-grow flex flex-col">
-                        <h4 class="text-brand-blue font-bold text-lg mb-4 uppercase">CASAS EM CONDOMÍNIO</h4>
-                        <ul class="space-y-3 text-sm text-gray-700 flex-grow">
-                            <li class="flex items-center gap-3"><i class="fa-solid fa-swimming-pool w-4 text-brand-blue text-center"></i> Lazer completo</li>
-                            <li class="flex items-center gap-3"><i class="fa-solid fa-shield-halved w-4 text-brand-blue text-center"></i> Segurança 24h</li>
-                            <li class="flex items-center gap-3"><i class="fa-solid fa-umbrella-beach w-4 text-brand-blue text-center"></i> Clube e praia privativa</li>
-                            <li class="flex items-center gap-3"><i class="fa-solid fa-building-shield w-4 text-brand-blue text-center"></i> Condomínio estruturado</li>
+                        <h4 class="font-heading text-brand-navy font-bold text-lg mb-4 uppercase">CASAS EM CONDOMÍNIO</h4>
+                        <ul class="space-y-3 text-sm text-gray-700 flex-grow font-sans">
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-swimming-pool w-4 text-brand-gold text-center"></i> Lazer completo</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-shield-halved w-4 text-brand-gold text-center"></i> Segurança 24h</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-umbrella-beach w-4 text-brand-gold text-center"></i> Clube e praia privativa</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-building-shield w-4 text-brand-gold text-center"></i> Condomínio estruturado</li>
                         </ul>
                     </div>
                     <div class="p-4 pt-0">
-                        <button class="w-full bg-brand-blue hover:bg-brand-blue-light transition-colors text-white font-bold py-2 rounded text-sm uppercase flex items-center justify-center gap-2">
+                        <button class="w-full bg-brand-navy hover:bg-brand-navyLight transition-colors text-white font-bold py-2 rounded text-sm uppercase flex items-center justify-center gap-2">
                             SAIBA MAIS <i class="fa-solid fa-arrow-right"></i>
                         </button>
                     </div>
@@ -322,7 +295,7 @@
         </div>
     </section>
 
-    <section class="relative bg-brand-beige py-16 overflow-hidden">
+    <section class="relative bg-[#F9F6F0] py-16 overflow-hidden">
         <!-- Construction Background Image on the right -->
         <div class="construction-bg-blend hidden md:block"></div>
         
@@ -331,14 +304,14 @@
                 
                 <!-- Left Side: Title and Icon -->
                 <div class="w-full md:w-1/2 flex items-start gap-6">
-                    <div class="text-brand-brown text-6xl md:text-7xl">
+                    <div class="text-brand-gold text-6xl md:text-7xl">
                         <i class="fa-regular fa-clipboard"></i>
                     </div>
                     <div>
-                        <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-brand-blue leading-tight mb-4 uppercase">
+                        <h2 class="font-heading text-2xl md:text-3xl lg:text-4xl font-bold text-brand-navy leading-tight mb-4 uppercase">
                             NEGOCIE DIRETO<br>COM A CONSTRUTORA
                         </h2>
-                        <p class="text-gray-700 text-sm md:text-base leading-relaxed">
+                        <p class="font-sans text-gray-700 text-sm md:text-base leading-relaxed">
                             Imóveis próprios, documentação regularizada e condições de negociação diretamente com quem constrói.
                         </p>
                     </div>
@@ -346,26 +319,26 @@
 
                 <!-- Right Side: Checkmarks -->
                 <div class="w-full md:w-1/2 flex flex-col justify-center">
-                    <ul class="space-y-3 font-medium text-gray-800 text-sm md:text-base">
+                    <ul class="font-sans space-y-3 font-medium text-gray-800 text-sm md:text-base">
                         <li class="flex items-center gap-3">
-                            <i class="fa-solid fa-check text-brand-brown"></i> Qualidade na construção
+                            <i class="fa-solid fa-check text-brand-gold"></i> Qualidade na construção
                         </li>
                         <li class="flex items-center gap-3">
-                            <i class="fa-solid fa-check text-brand-brown"></i> Cumprimento de prazos
+                            <i class="fa-solid fa-check text-brand-gold"></i> Cumprimento de prazos
                         </li>
                         <li class="flex items-center gap-3">
-                            <i class="fa-solid fa-check text-brand-brown"></i> Documentação em dia
+                            <i class="fa-solid fa-check text-brand-gold"></i> Documentação em dia
                         </li>
                         <li class="flex items-center gap-3">
-                            <i class="fa-solid fa-check text-brand-brown"></i> Direitos garantidos por lei
+                            <i class="fa-solid fa-check text-brand-gold"></i> Direitos garantidos por lei
                         </li>
                         <li class="flex items-center gap-3">
-                            <i class="fa-solid fa-check text-brand-brown"></i> Financiamento CEF
+                            <i class="fa-solid fa-check text-brand-gold"></i> Financiamento CEF
                         </li>
                     </ul>
                     
                     <div class="mt-4 flex items-center gap-4">
-                        <span class="text-sm text-gray-600">Consulte condições</span>
+                        <span class="font-sans text-sm text-gray-600">Consulte condições</span>
                         <div class="caixa-logo">
                             CAIXA<span class="caixa-x">X</span>
                         </div>
@@ -376,14 +349,104 @@
         </div>
     </section>
 
-    <footer class="bg-brand-blue text-white pt-12 pb-10">
+    <section id="sobre" class="py-24 bg-brand-light">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Fotos e Nomes -->
+            <div class="flex flex-col md:flex-row justify-center items-center gap-12 md:gap-24 mb-16">
+                <!-- Perfil 1 -->
+                <div class="text-center group">
+                    <div class="w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border-4 border-white shadow-xl mb-6 mx-auto transform transition duration-500 group-hover:scale-105 group-hover:border-brand-gold">
+                        <img src="ronald.jpeg" alt="Ronald Souza" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80'" />
+                    </div>
+                    <h3 class="font-heading font-bold text-2xl text-brand-navy">Ronald Souza</h3>
+                </div>
+                
+                <!-- Perfil 2 -->
+                <div class="text-center group">
+                    <div class="w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border-4 border-white shadow-xl mb-6 mx-auto transform transition duration-500 group-hover:scale-105 group-hover:border-brand-gold">
+                        <img src="elcio.jpeg" alt="Élcio Junior" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80'" />
+                    </div>
+                    <h3 class="font-heading font-bold text-2xl text-brand-navy">Élcio Junior</h3>
+                </div>
+            </div>
+
+            <!-- Card de Estatísticas com Contadores Animados -->
+            <div class="bg-white rounded-3xl shadow-xl p-8 md:p-12 border border-gray-100 max-w-5xl mx-auto relative overflow-hidden">
+                <div class="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-8 divide-y md:divide-y-0 md:divide-x divide-gray-100">
+                    <div class="py-4 md:py-0 text-center flex flex-col justify-center">
+                        <div class="font-sans text-5xl md:text-6xl font-extrabold text-brand-navy mb-3">+<span class="counter" data-target="15">0</span></div>
+                        <div class="font-sans text-xs md:text-sm font-semibold text-gray-400 tracking-widest uppercase">Anos de Experiência</div>
+                    </div>
+                    <div class="py-4 md:py-0 text-center flex flex-col justify-center">
+                        <div class="font-sans text-5xl md:text-6xl font-extrabold text-brand-gold mb-3">+<span class="counter" data-target="350">0</span></div>
+                        <div class="font-sans text-xs md:text-sm font-semibold text-gray-400 tracking-widest uppercase">Projetos Entregues</div>
+                    </div>
+                    <div class="py-4 md:py-0 text-center flex flex-col justify-center">
+                        <div class="font-sans text-5xl md:text-6xl font-extrabold text-brand-navy mb-3"><span class="counter" data-target="100">0</span>%</div>
+                        <div class="font-sans text-xs md:text-sm font-semibold text-gray-400 tracking-widest uppercase">Aprovação Legal</div>
+                    </div>
+                </div>
+                
+                <div class="relative z-10 text-center mt-12 pt-12 border-t border-gray-100">
+                    <p class="font-sans text-brand-gold font-bold tracking-widest uppercase text-sm mb-4">Obras Concluídas</p>
+                    <h3 class="font-heading text-2xl md:text-4xl font-bold text-brand-navy mb-4">Excelência materializada em cada detalhe</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="localizacao" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-heading text-3xl sm:text-4xl font-bold text-brand-navy mb-4">
+                    Localização Estratégica
+                </h2>
+                <p class="font-sans text-gray-600 text-lg">
+                    Venha nos visitar em nosso escritório em São Pedro da Aldeia.
+                </p>
+            </div>
+
+            <div class="rounded-2xl overflow-hidden shadow-2xl border border-gray-100 flex flex-col lg:flex-row">
+                <!-- Info do Endereço -->
+                <div class="bg-brand-navyLight text-white p-10 lg:w-1/3 flex flex-col justify-center">
+                    <h3 class="font-heading text-2xl font-bold mb-6 text-brand-gold">Nosso Endereço</h3>
+                    <ul class="font-sans space-y-6">
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-location-dot mt-1.5 text-xl mr-4 text-brand-gold"></i>
+                            <div>
+                                <p class="font-semibold text-lg">João de Souza Construções</p>
+                                <p class="text-gray-300 mt-1">R. Hermógenes Freire da Costa, 02 - Loja 01<br>Centro, São Pedro da Aldeia - RJ<br>CEP: 28940-000</p>
+                            </div>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa-solid fa-phone text-xl mr-4 text-brand-gold"></i>
+                            <a href="tel:+5522997662533" class="text-gray-300 hover:text-white transition-colors text-lg">(22) 99766-2533</a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Google Maps Iframe -->
+                <div class="lg:w-2/3 h-[400px] lg:h-auto w-full relative">
+                    <iframe 
+                        src="https://maps.google.com/maps?q=R.%20Hermogenes%20Freire%20da%20Costa,%2002%20-%20loja%2001%20-%20Centro,%20S%C3%A3o%20Pedro%20da%20Aldeia%20-%20RJ&t=&z=16&ie=UTF8&iwloc=&output=embed" 
+                        class="absolute inset-0 w-full h-full border-0" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-brand-navy text-white pt-16 pb-14 border-t border-white/10">
         <div class="max-w-7xl mx-auto px-4">
             <div class="flex flex-col md:flex-row justify-between items-center md:items-stretch gap-8">
                 
                 <!-- Column 1: QR Code -->
                 <div class="flex flex-col items-center justify-center w-full md:w-1/3">
                     <div class="w-24 h-24 qr-placeholder mb-3"></div>
-                    <p class="text-xs text-gray-300">Aponte o QR Code e fale conosco</p>
+                    <p class="font-sans text-xs text-gray-300">Aponte o QR Code e fale conosco</p>
                 </div>
 
                 <!-- Vertical Divider (Desktop) -->
@@ -392,7 +455,7 @@
                 <!-- Column 2: Phones -->
                 <div class="flex items-center justify-center w-full md:w-1/3 gap-4">
                     <i class="fa-brands fa-whatsapp text-whatsapp text-5xl"></i>
-                    <div class="flex flex-col text-xl md:text-2xl font-bold tracking-wider">
+                    <div class="font-sans flex flex-col text-xl md:text-2xl font-bold tracking-wider">
                         <span>(22) 99766-2533</span>
                         <span>(22) 99974-1208</span>
                     </div>
@@ -403,47 +466,154 @@
 
                 <!-- Column 3: Social & Button -->
                 <div class="flex flex-col items-center md:items-start justify-center w-full md:w-1/3 gap-4 md:pl-8">
-                    <div class="flex flex-col gap-3 text-sm">
-                        <a href="#" class="flex items-center gap-3 hover:text-gray-300 transition-colors">
+                    <div class="font-sans flex flex-col gap-3 text-sm">
+                        <a href="#" class="flex items-center gap-3 hover:text-brand-gold transition-colors">
                             <i class="fa-solid fa-globe text-xl w-6 text-center"></i> joaodesouzaconstrucoes.com
                         </a>
-                        <a href="#" class="flex items-center gap-3 hover:text-gray-300 transition-colors">
+                        <a href="#" class="flex items-center gap-3 hover:text-brand-gold transition-colors">
                             <i class="fa-brands fa-instagram text-xl w-6 text-center"></i> @joao_de_souza_construcoes
                         </a>
                     </div>
-                    <a href="#" class="mt-2 bg-[#2ba34a] hover:bg-[#22833b] border border-green-400 transition-colors text-white font-bold py-2.5 px-8 rounded-full text-sm flex items-center gap-2">
+                    <a href="https://wa.me/5522997662533?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20visita!" target="_blank" class="mt-2 bg-[#2ba34a] hover:bg-[#22833b] border border-green-400 transition-colors text-white font-bold py-2.5 px-8 rounded-full text-sm flex items-center gap-2">
                         <i class="fa-brands fa-whatsapp text-lg"></i> FALE CONOSCO
                     </a>
                 </div>
 
             </div>
         </div>
-    </footer>
+    </section>
 
-    <div class="bg-brand-brown py-6">
+    <section class="bg-brand-gold py-8 border-b border-brand-goldHover">
         <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
             
             <!-- Quote -->
             <div class="text-center md:text-left flex-grow">
                 <div class="flex items-center justify-center md:justify-start gap-4 mb-2">
                     <div class="w-12 h-px bg-white/50"></div>
-                    <p class="text-white italic text-lg font-light tracking-wide">Tudo tem o seu tempo determinado.</p>
+                    <p class="font-sans text-white italic text-lg font-light tracking-wide">Tudo tem o seu tempo determinado.</p>
                     <div class="w-12 h-px bg-white/50"></div>
                 </div>
-                <p class="text-white/80 text-xs tracking-[0.2em] font-medium ml-0 md:ml-16 uppercase">Invista na planta &bull; Consulte-nos</p>
+                <p class="font-sans text-white/80 text-xs tracking-[0.2em] font-medium ml-0 md:ml-16 uppercase">Invista na planta &bull; Consulte-nos</p>
             </div>
 
-            <!-- Footer Logo -->
+            <!-- Mini Logo -->
             <div class="flex items-center gap-3 text-white">
                 <i class="fa-solid fa-house-chimney text-3xl font-light opacity-90 border border-white p-1.5 rounded-sm"></i>
                 <div class="flex flex-col justify-center">
-                    <span class="font-bold text-sm leading-tight tracking-wide">JOÃO DE SOUZA<br>CONSTRUÇÕES</span>
-                    <span class="text-[9px] tracking-widest mt-1 opacity-80 uppercase">HÁ MAIS DE 20 ANOS</span>
+                    <span class="font-heading font-bold text-sm leading-tight tracking-wide">JOÃO DE SOUZA<br>CONSTRUÇÕES</span>
+                    <span class="font-sans text-[9px] tracking-widest mt-1 opacity-80 uppercase">HÁ MAIS DE 20 ANOS</span>
                 </div>
             </div>
 
         </div>
-    </div>
+    </section>
 
+    <footer class="bg-brand-navy pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-8">
+                <!-- Logo Footer -->
+                <div class="mb-6 md:mb-0 text-center md:text-left">
+                    <span class="font-heading font-bold text-2xl text-white">
+                        João de Souza <span class="text-brand-gold">Construções</span>
+                    </span>
+                    <p class="font-sans text-gray-400 mt-2 text-sm max-w-sm">Construindo sonhos e entregando qualidade de vida na Região dos Lagos.</p>
+                </div>
+                
+                <!-- Links Úteis -->
+                <div class="text-center md:text-right">
+                    <p class="font-sans text-white font-semibold mb-4">Links Rápidos</p>
+                    <div class="font-sans flex space-x-6 justify-center md:justify-end">
+                        <a href="#" class="text-gray-400 hover:text-brand-gold transition-colors text-sm">A Empresa</a>
+                        <a href="#empreendimentos-section" class="text-gray-400 hover:text-brand-gold transition-colors text-sm">Empreendimentos</a>
+                        <a href="https://wa.me/5522997662533?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20visita!" target="_blank" class="text-gray-400 hover:text-brand-gold transition-colors text-sm">Contato</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 font-sans">
+                <p>&copy; 2026 João de Souza Construções. Todos os direitos reservados.</p>
+                <p class="mt-2 md:mt-0">CNPJ: 23.286.837/0001-44</p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/5522997662533?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20visita!" 
+       target="_blank" 
+       class="btn-whatsapp fixed bottom-6 right-6 bg-[#25D366] hover:bg-[#1ebd5a] text-white w-16 h-16 rounded-full flex items-center justify-center text-3xl shadow-[0_4px_15px_rgba(0,0,0,0.3)] z-50 transition-colors duration-300"
+       aria-label="Contato pelo WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // Hero Slider Functionality
+        document.addEventListener("DOMContentLoaded", () => {
+            const slides = document.querySelectorAll('.hero-slide');
+            if(slides.length > 0) {
+                let currentSlide = 0;
+                setInterval(() => {
+                    slides[currentSlide].classList.remove('opacity-100');
+                    slides[currentSlide].classList.add('opacity-0');
+                    
+                    currentSlide = (currentSlide + 1) % slides.length;
+                    
+                    slides[currentSlide].classList.remove('opacity-0');
+                    slides[currentSlide].classList.add('opacity-100');
+                }, 5000); // Change every 5 seconds
+            }
+        });
+
+        // Funcionalidade do Menu Mobile
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Animação de Contagem Crescente (Counters)
+        const counters = document.querySelectorAll('.counter');
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.5
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    counters.forEach(counter => {
+                        const target = +counter.getAttribute('data-target');
+                        const duration = 2000; // Duração da animação em milissegundos
+                        const increment = target / (duration / 16); // Incremento baseado em ~60fps
+                        let currentCount = 0;
+
+                        const updateCounter = () => {
+                            currentCount += increment;
+                            if (currentCount < target) {
+                                counter.innerText = Math.ceil(currentCount);
+                                requestAnimationFrame(updateCounter);
+                            } else {
+                                counter.innerText = target;
+                            }
+                        };
+                        updateCounter();
+                    });
+                    // Para a animação de ocorrer novamente após disparar uma vez
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        const statsSection = document.getElementById('sobre');
+        if (statsSection) {
+            observer.observe(statsSection);
+        }
+    </script>
 </body>
 </html>
