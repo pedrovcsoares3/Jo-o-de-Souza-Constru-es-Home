@@ -179,11 +179,11 @@
             </div>
         </div>
         
-        <!-- Indicators (Static visual) -->
+        <!-- Indicators (Dynamic visual) -->
         <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex gap-2 z-20">
-            <div class="w-2.5 h-2.5 rounded-full bg-brand-gold"></div>
-            <div class="w-2.5 h-2.5 rounded-full bg-white/50"></div>
-            <div class="w-2.5 h-2.5 rounded-full bg-white/50"></div>
+            <div class="hero-dot w-2.5 h-2.5 rounded-full bg-brand-gold transition-colors duration-500"></div>
+            <div class="hero-dot w-2.5 h-2.5 rounded-full bg-white/50 transition-colors duration-500"></div>
+            <div class="hero-dot w-2.5 h-2.5 rounded-full bg-white/50 transition-colors duration-500"></div>
         </div>
     </section>
 
@@ -518,16 +518,29 @@
         // Hero Slider Functionality
         document.addEventListener("DOMContentLoaded", () => {
             const slides = document.querySelectorAll('.hero-slide');
+            const dots = document.querySelectorAll('.hero-dot');
+            
             if(slides.length > 0) {
                 let currentSlide = 0;
                 setInterval(() => {
+                    // Remove active states
                     slides[currentSlide].classList.remove('opacity-100');
                     slides[currentSlide].classList.add('opacity-0');
+                    if (dots.length > 0) {
+                        dots[currentSlide].classList.remove('bg-brand-gold');
+                        dots[currentSlide].classList.add('bg-white/50');
+                    }
                     
+                    // Increment Slide
                     currentSlide = (currentSlide + 1) % slides.length;
                     
+                    // Add active states
                     slides[currentSlide].classList.remove('opacity-0');
                     slides[currentSlide].classList.add('opacity-100');
+                    if (dots.length > 0) {
+                        dots[currentSlide].classList.remove('bg-white/50');
+                        dots[currentSlide].classList.add('bg-brand-gold');
+                    }
                 }, 5000); // Change every 5 seconds
             }
         });
