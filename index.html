@@ -23,11 +23,11 @@
                 extend: {
                     colors: {
                         brand: {
-                            navy: '#0f172a',       /* Substituindo brand-blue */
-                            navyLight: '#1e293b',  /* Substituindo brand-blue-light */
-                            gold: '#c5a059',       /* Substituindo brand-brown */
-                            goldHover: '#b38d45',  /* Substituindo brand-brown-dark */
-                            light: '#f8fafc',      /* Substituindo brand-gray-bg / brand-beige */
+                            navy: '#0f172a',
+                            navyLight: '#1e293b',
+                            gold: '#c5a059',
+                            goldHover: '#b38d45',
+                            light: '#f8fafc',
                             gray: '#64748b'
                         },
                         'whatsapp': '#25D366'
@@ -43,6 +43,7 @@
             }
         }
     </script>
+    
     <style>
         .hero-overlay {
             background: linear-gradient(to right, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0.7) 40%, rgba(0,0,0,0) 100%);
@@ -105,7 +106,6 @@
     <header class="fixed w-full z-50 bg-white/90 backdrop-blur-md shadow-sm transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
-                <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.scrollTo(0,0)">
                     <img src="logo_3_sem_fundo.png" alt="Logo" class="h-10 md:h-12 w-auto object-contain mr-3" onerror="this.src='https://placehold.co/150x50/0f172a/fff?text=Logo'">
                     <div class="flex flex-col">
@@ -118,7 +118,6 @@
                     </div>
                 </div>
                 
-                <!-- Desktop Nav -->
                 <nav class="hidden md:flex space-x-8 items-center">
                     <a href="#" class="text-sm font-semibold text-gray-600 hover:text-brand-gold transition-colors">Home</a>
                     <a href="#empreendimentos-section" class="text-sm font-semibold text-gray-600 hover:text-brand-gold transition-colors">Empreendimentos</a>
@@ -126,7 +125,6 @@
                     <a href="https://wa.me/5522997662533?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20visita!" target="_blank" class="bg-brand-navy text-white px-5 py-2.5 rounded-md font-semibold hover:bg-brand-gold transition-colors shadow-lg">Fale Conosco</a>
                 </nav>
 
-                <!-- Mobile Menu Button -->
                 <div class="md:hidden flex items-center">
                     <button id="mobile-menu-btn" class="text-brand-navy hover:text-brand-gold focus:outline-none text-2xl">
                         <i class="fa-solid fa-bars"></i>
@@ -135,7 +133,6 @@
             </div>
         </div>
 
-        <!-- Mobile Nav Dropdown -->
         <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 shadow-lg px-4 pt-4 pb-6 space-y-3">
             <a href="#" class="block text-base font-semibold text-gray-600 hover:text-brand-gold transition-colors">Home</a>
             <a href="#empreendimentos-section" class="block text-base font-semibold text-gray-600 hover:text-brand-gold transition-colors">Empreendimentos</a>
@@ -146,17 +143,14 @@
 
     <section class="relative w-full h-[500px] md:h-[600px] bg-brand-navy overflow-hidden pt-20">
         
-        <!-- Background Slider -->
         <div id="hero-slider" class="absolute inset-0 z-0">
             <img src="slide1.jpeg" alt="Slide 1" class="hero-slide absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-1000 opacity-100" onerror="this.src='https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80'">
             <img src="slide2.jpeg" alt="Slide 2" class="hero-slide absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-1000 opacity-0" onerror="this.src='https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80'">
             <img src="slide3.jpeg" alt="Slide 3" class="hero-slide absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-1000 opacity-0" onerror="this.src='https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80'">
         </div>
         
-        <!-- Gradient Overlay -->
         <div class="absolute inset-0 hero-overlay z-10"></div>
 
-        <!-- Content -->
         <div class="relative z-20 max-w-7xl mx-auto px-4 h-full flex items-center">
             <div class="w-full md:w-3/5 lg:w-1/2 text-white">
                 <h2 class="font-heading text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-2">
@@ -179,18 +173,25 @@
             </div>
         </div>
         
-        <!-- Indicators (Static visual) -->
-        <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex gap-2 z-20">
-            <div class="w-2.5 h-2.5 rounded-full bg-brand-gold"></div>
-            <div class="w-2.5 h-2.5 rounded-full bg-white/50"></div>
-            <div class="w-2.5 h-2.5 rounded-full bg-white/50"></div>
+        <!-- Add Carousel Controls here (prev-slide and next-slide buttons) -->
+        <button id="prev-slide" class="absolute left-4 top-1/2 transform -translate-y-1/2 text-white/50 hover:text-white text-3xl z-30 transition-colors cursor-pointer">
+            <i class="fa-solid fa-angle-left"></i>
+        </button>
+        <button id="next-slide" class="absolute right-4 top-1/2 transform -translate-y-1/2 text-white/50 hover:text-white text-3xl z-30 transition-colors cursor-pointer">
+            <i class="fa-solid fa-angle-right"></i>
+        </button>
+        
+        <!-- Modify Indicators to have the 'indicator' class -->
+        <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex gap-2 z-30" id="hero-indicators">
+            <div class="indicator w-2.5 h-2.5 rounded-full bg-brand-gold cursor-pointer transition-colors" data-index="0"></div>
+            <div class="indicator w-2.5 h-2.5 rounded-full bg-white/50 cursor-pointer transition-colors" data-index="1"></div>
+            <div class="indicator w-2.5 h-2.5 rounded-full bg-white/50 cursor-pointer transition-colors" data-index="2"></div>
         </div>
     </section>
 
+    <!-- ... Keep the rest of the HTML sections exactly as provided in the base code ... -->
     <section id="empreendimentos-section" class="py-16 bg-brand-light">
         <div class="max-w-7xl mx-auto px-4">
-            
-            <!-- Section Header -->
             <div class="mb-10">
                 <h2 class="font-heading text-3xl md:text-4xl font-bold text-brand-navy mb-2">NOSSOS EMPREENDIMENTOS</h2>
                 <div class="text-gray-600 font-medium flex gap-2 text-sm md:text-base">
@@ -202,10 +203,7 @@
                 </div>
             </div>
 
-            <!-- Cards Grid -->
             <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-                
-                <!-- Card 1: Casas (Updated image to slide1.jpeg) -->
                 <div class="bg-white rounded border border-brand-navy overflow-hidden shadow-card flex flex-col group hover:shadow-xl transition-shadow">
                     <div class="h-48 overflow-hidden relative">
                         <img src="slide1.jpeg" alt="Casas" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'">
@@ -226,7 +224,6 @@
                     </div>
                 </div>
 
-                <!-- Card 2: Apartamentos -->
                 <div class="bg-white rounded border border-brand-navy overflow-hidden shadow-card flex flex-col group hover:shadow-xl transition-shadow">
                     <div class="h-48 overflow-hidden relative">
                         <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Apartamentos" class="w-full h-full object-cover object-bottom transform group-hover:scale-105 transition-transform duration-500">
@@ -247,7 +244,6 @@
                     </div>
                 </div>
 
-                <!-- Card 3: Salas Comerciais -->
                 <div class="bg-white rounded border border-brand-navy overflow-hidden shadow-card flex flex-col group hover:shadow-xl transition-shadow">
                     <div class="h-48 overflow-hidden relative">
                         <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Salas Comerciais" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
@@ -268,7 +264,6 @@
                     </div>
                 </div>
 
-                <!-- Card 4: Casas em Condomínio -->
                 <div class="bg-white rounded border border-brand-navy overflow-hidden shadow-card flex flex-col group hover:shadow-xl transition-shadow">
                     <div class="h-48 overflow-hidden relative">
                         <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Casas em Condomínio" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
@@ -288,19 +283,14 @@
                         </button>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
 
     <section class="relative bg-[#F9F6F0] py-16 overflow-hidden">
-        <!-- Construction Background Image on the right -->
         <div class="construction-bg-blend hidden md:block"></div>
-        
         <div class="max-w-7xl mx-auto px-4 relative z-10">
             <div class="flex flex-col md:flex-row items-center gap-8 md:gap-16">
-                
-                <!-- Left Side: Title and Icon -->
                 <div class="w-full md:w-1/2 flex items-start gap-6">
                     <div class="text-brand-gold text-6xl md:text-7xl">
                         <i class="fa-regular fa-clipboard"></i>
@@ -314,8 +304,6 @@
                         </p>
                     </div>
                 </div>
-
-                <!-- Right Side: Checkmarks -->
                 <div class="w-full md:w-1/2 flex flex-col justify-center">
                     <ul class="font-sans space-y-3 font-medium text-gray-800 text-sm md:text-base">
                         <li class="flex items-center gap-3">
@@ -334,7 +322,6 @@
                             <i class="fa-solid fa-check text-brand-gold"></i> Financiamento CEF
                         </li>
                     </ul>
-                    
                     <div class="mt-4 flex items-center gap-4">
                         <span class="font-sans text-sm text-gray-600">Consulte condições</span>
                         <div class="caixa-logo">
@@ -342,24 +329,19 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
 
     <section id="sobre" class="py-24 bg-brand-light">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <!-- Fotos e Nomes -->
             <div class="flex flex-col md:flex-row justify-center items-center gap-12 md:gap-24 mb-16">
-                <!-- Perfil 1 -->
                 <div class="text-center group">
                     <div class="w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border-4 border-white shadow-xl mb-6 mx-auto transform transition duration-500 group-hover:scale-105 group-hover:border-brand-gold">
                         <img src="ronald.jpeg" alt="Ronald Souza" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80'" />
                     </div>
                     <h3 class="font-heading font-bold text-2xl text-brand-navy">Ronald Souza</h3>
                 </div>
-                
-                <!-- Perfil 2 -->
                 <div class="text-center group">
                     <div class="w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border-4 border-white shadow-xl mb-6 mx-auto transform transition duration-500 group-hover:scale-105 group-hover:border-brand-gold">
                         <img src="elcio.jpeg" alt="Élcio Junior" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80'" />
@@ -367,8 +349,6 @@
                     <h3 class="font-heading font-bold text-2xl text-brand-navy">Élcio Junior</h3>
                 </div>
             </div>
-
-            <!-- Card de Estatísticas com Contadores Animados -->
             <div class="bg-white rounded-3xl shadow-xl p-8 md:p-12 border border-gray-100 max-w-5xl mx-auto relative overflow-hidden">
                 <div class="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-8 divide-y md:divide-y-0 md:divide-x divide-gray-100">
                     <div class="py-4 md:py-0 text-center flex flex-col justify-center">
@@ -384,7 +364,6 @@
                         <div class="font-sans text-xs md:text-sm font-semibold text-gray-400 tracking-widest uppercase">Aprovação Legal</div>
                     </div>
                 </div>
-                
                 <div class="relative z-10 text-center mt-12 pt-12 border-t border-gray-100">
                     <p class="font-sans text-brand-gold font-bold tracking-widest uppercase text-sm mb-4">Obras Concluídas</p>
                     <h3 class="font-heading text-2xl md:text-4xl font-bold text-brand-navy mb-4">Excelência materializada em cada detalhe</h3>
@@ -396,16 +375,10 @@
     <section id="localizacao" class="py-24 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="font-heading text-3xl sm:text-4xl font-bold text-brand-navy mb-4">
-                    Localização Estratégica
-                </h2>
-                <p class="font-sans text-gray-600 text-lg">
-                    Venha nos visitar em nosso escritório em São Pedro da Aldeia.
-                </p>
+                <h2 class="font-heading text-3xl sm:text-4xl font-bold text-brand-navy mb-4">Localização Estratégica</h2>
+                <p class="font-sans text-gray-600 text-lg">Venha nos visitar em nosso escritório em São Pedro da Aldeia.</p>
             </div>
-
             <div class="rounded-2xl overflow-hidden shadow-2xl border border-gray-100 flex flex-col lg:flex-row">
-                <!-- Info do Endereço -->
                 <div class="bg-brand-navyLight text-white p-10 lg:w-1/3 flex flex-col justify-center">
                     <h3 class="font-heading text-2xl font-bold mb-6 text-brand-gold">Nosso Endereço</h3>
                     <ul class="font-sans space-y-6">
@@ -422,16 +395,8 @@
                         </li>
                     </ul>
                 </div>
-                
-                <!-- Google Maps Iframe -->
                 <div class="lg:w-2/3 h-[400px] lg:h-auto w-full relative">
-                    <iframe 
-                        src="https://maps.google.com/maps?q=R.%20Hermogenes%20Freire%20da%20Costa,%2002%20-%20loja%2001%20-%20Centro,%20S%C3%A3o%20Pedro%20da%20Aldeia%20-%20RJ&t=&z=16&ie=UTF8&iwloc=&output=embed" 
-                        class="absolute inset-0 w-full h-full border-0" 
-                        allowfullscreen="" 
-                        loading="lazy" 
-                        referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
+                    <iframe src="https://maps.google.com/maps?q=R.%20Hermogenes%20Freire%20da%20Costa,%2002%20-%20loja%2001%20-%20Centro,%20S%C3%A3o%20Pedro%20da%20Aldeia%20-%20RJ&t=&z=16&ie=UTF8&iwloc=&output=embed" class="absolute inset-0 w-full h-full border-0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
         </div>
@@ -440,17 +405,11 @@
     <section class="bg-brand-navy text-white pt-16 pb-14 border-t border-white/10">
         <div class="max-w-7xl mx-auto px-4">
             <div class="flex flex-col md:flex-row justify-between items-center md:items-stretch gap-8">
-                
-                <!-- Column 1: QR Code -->
                 <div class="flex flex-col items-center justify-center w-full md:w-1/3">
                     <div class="w-24 h-24 qr-placeholder mb-3"></div>
                     <p class="font-sans text-xs text-gray-300">Aponte o QR Code e fale conosco</p>
                 </div>
-
-                <!-- Vertical Divider (Desktop) -->
                 <div class="hidden md:block w-px bg-white/20 my-2"></div>
-
-                <!-- Column 2: Phones -->
                 <div class="flex items-center justify-center w-full md:w-1/3 gap-4">
                     <i class="fa-brands fa-whatsapp text-whatsapp text-5xl"></i>
                     <div class="font-sans flex flex-col text-xl md:text-2xl font-bold tracking-wider">
@@ -458,25 +417,16 @@
                         <span>(22) 99974-1208</span>
                     </div>
                 </div>
-
-                <!-- Vertical Divider (Desktop) -->
                 <div class="hidden md:block w-px bg-white/20 my-2"></div>
-
-                <!-- Column 3: Social & Button -->
                 <div class="flex flex-col items-center md:items-start justify-center w-full md:w-1/3 gap-4 md:pl-8">
                     <div class="font-sans flex flex-col gap-3 text-sm">
-                        <a href="#" class="flex items-center gap-3 hover:text-brand-gold transition-colors">
-                            <i class="fa-solid fa-globe text-xl w-6 text-center"></i> joaodesouzaconstrucoes.com
-                        </a>
-                        <a href="#" class="flex items-center gap-3 hover:text-brand-gold transition-colors">
-                            <i class="fa-brands fa-instagram text-xl w-6 text-center"></i> @joao_de_souza_construcoes
-                        </a>
+                        <a href="#" class="flex items-center gap-3 hover:text-brand-gold transition-colors"><i class="fa-solid fa-globe text-xl w-6 text-center"></i> joaodesouzaconstrucoes.com</a>
+                        <a href="#" class="flex items-center gap-3 hover:text-brand-gold transition-colors"><i class="fa-brands fa-instagram text-xl w-6 text-center"></i> @joao_de_souza_construcoes</a>
                     </div>
                     <a href="https://wa.me/5522997662533?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20visita!" target="_blank" class="mt-2 bg-[#2ba34a] hover:bg-[#22833b] border border-green-400 transition-colors text-white font-bold py-2.5 px-8 rounded-full text-sm flex items-center gap-2">
                         <i class="fa-brands fa-whatsapp text-lg"></i> FALE CONOSCO
                     </a>
                 </div>
-
             </div>
         </div>
     </section>
@@ -484,15 +434,10 @@
     <footer class="bg-brand-navy pt-16 pb-8">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row justify-between items-center mb-8">
-                <!-- Logo Footer -->
                 <div class="mb-6 md:mb-0 text-center md:text-left">
-                    <span class="font-heading font-bold text-2xl text-white">
-                        João de Souza <span class="text-brand-gold">Construções</span>
-                    </span>
+                    <span class="font-heading font-bold text-2xl text-white">João de Souza <span class="text-brand-gold">Construções</span></span>
                     <p class="font-sans text-gray-400 mt-2 text-sm max-w-sm">Construindo sonhos e entregando qualidade de vida na Região dos Lagos.</p>
                 </div>
-                
-                <!-- Links Úteis -->
                 <div class="text-center md:text-right">
                     <p class="font-sans text-white font-semibold mb-4">Links Rápidos</p>
                     <div class="font-sans flex space-x-6 justify-center md:justify-end">
@@ -502,7 +447,6 @@
                     </div>
                 </div>
             </div>
-            
             <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 font-sans">
                 <p>&copy; 2026 João de Souza Construções. Todos os direitos reservados.</p>
                 <p class="mt-2 md:mt-0">CNPJ: 23.286.837/0001-44</p>
@@ -510,62 +454,103 @@
         </div>
     </footer>
 
-    <a href="https://wa.me/5522997662533?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20visita!" 
-       target="_blank" 
-       class="btn-whatsapp fixed bottom-6 right-6 bg-[#25D366] hover:bg-[#1ebd5a] text-white w-16 h-16 rounded-full flex items-center justify-center text-3xl shadow-[0_4px_15px_rgba(0,0,0,0.3)] z-50 transition-colors duration-300"
-       aria-label="Contato pelo WhatsApp">
+    <a href="https://wa.me/5522997662533?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20visita!" target="_blank" class="btn-whatsapp fixed bottom-6 right-6 bg-[#25D366] hover:bg-[#1ebd5a] text-white w-16 h-16 rounded-full flex items-center justify-center text-3xl shadow-[0_4px_15px_rgba(0,0,0,0.3)] z-50 transition-colors duration-300" aria-label="Contato pelo WhatsApp">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
+    <!-- Modify JavaScript to handle new slider logic -->
     <script>
-        // Hero Slider Functionality
         document.addEventListener("DOMContentLoaded", () => {
             const slides = document.querySelectorAll('.hero-slide');
+            const indicators = document.querySelectorAll('.indicator');
+            const prevBtn = document.getElementById('prev-slide');
+            const nextBtn = document.getElementById('next-slide');
+            
             if(slides.length > 0) {
                 let currentSlide = 0;
-                setInterval(() => {
+                let slideInterval;
+
+                const updateSlider = (newIndex) => {
                     slides[currentSlide].classList.remove('opacity-100');
                     slides[currentSlide].classList.add('opacity-0');
                     
-                    currentSlide = (currentSlide + 1) % slides.length;
+                    if(indicators[currentSlide]) {
+                        indicators[currentSlide].classList.remove('bg-brand-gold');
+                        indicators[currentSlide].classList.add('bg-white/50');
+                    }
+                    
+                    currentSlide = newIndex;
                     
                     slides[currentSlide].classList.remove('opacity-0');
                     slides[currentSlide].classList.add('opacity-100');
-                }, 5000); // Change every 5 seconds
+                    
+                    if(indicators[currentSlide]) {
+                        indicators[currentSlide].classList.remove('bg-white/50');
+                        indicators[currentSlide].classList.add('bg-brand-gold');
+                    }
+                };
+
+                const nextSlide = () => {
+                    let nextIndex = (currentSlide + 1) % slides.length;
+                    updateSlider(nextIndex);
+                };
+
+                const prevSlide = () => {
+                    let prevIndex = (currentSlide - 1 + slides.length) % slides.length;
+                    updateSlider(prevIndex);
+                };
+
+                const startInterval = () => {
+                    slideInterval = setInterval(nextSlide, 5000);
+                };
+
+                const resetInterval = () => {
+                    clearInterval(slideInterval);
+                    startInterval();
+                };
+
+                if(nextBtn) {
+                    nextBtn.addEventListener('click', () => {
+                        nextSlide();
+                        resetInterval();
+                    });
+                }
+
+                if(prevBtn) {
+                    prevBtn.addEventListener('click', () => {
+                        prevSlide();
+                        resetInterval();
+                    });
+                }
+
+                indicators.forEach((indicator, index) => {
+                    indicator.addEventListener('click', () => {
+                        if(currentSlide !== index) {
+                            updateSlider(index);
+                            resetInterval();
+                        }
+                    });
+                });
+
+                startInterval();
             }
         });
 
-        // Funcionalidade do Menu Mobile
         const mobileBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
-        
-        mobileBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
+        mobileBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
+        mobileMenu.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => { mobileMenu.classList.add('hidden'); }); });
 
-        mobileMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-            });
-        });
-
-        // Animação de Contagem Crescente (Counters)
         const counters = document.querySelectorAll('.counter');
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.5
-        };
-
+        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.5 };
         const observer = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     counters.forEach(counter => {
                         const target = +counter.getAttribute('data-target');
-                        const duration = 2000; // Duração da animação em milissegundos
-                        const increment = target / (duration / 16); // Incremento baseado em ~60fps
+                        const duration = 2000;
+                        const increment = target / (duration / 16);
                         let currentCount = 0;
-
                         const updateCounter = () => {
                             currentCount += increment;
                             if (currentCount < target) {
@@ -577,16 +562,13 @@
                         };
                         updateCounter();
                     });
-                    // Para a animação de ocorrer novamente após disparar uma vez
                     observer.unobserve(entry.target);
                 }
             });
         }, observerOptions);
 
         const statsSection = document.getElementById('sobre');
-        if (statsSection) {
-            observer.observe(statsSection);
-        }
+        if (statsSection) { observer.observe(statsSection); }
     </script>
 </body>
 </html>
